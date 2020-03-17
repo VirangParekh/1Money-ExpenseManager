@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+    {% block  content %}
+    <div class="col-sm-6 col-sm-offset-3">
+    {{ block.super }}
+    <h1>Form</h1>
+
+    <form method="POST" action=" " enctype="multipart/form-Event">
+    {% csrf_token %}
+    {{ form.as_p }}    
+    {% if action == "create" %}
+    <input type="submit" class='btn btn-default' value="Create Post" />
+    {% else %}
+    <input type="submit" class='btn btn-default' value="Update Post" />
+    {% endif %}
+    </form>
+    </div>
+    {% endblock content %}
