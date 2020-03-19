@@ -7,6 +7,7 @@ class PostForm(forms.ModelForm):
         model = Data
         fields= [
             "sub_category",
+            "category_link",
             "spent",
             "recursive",
             "pay_type",

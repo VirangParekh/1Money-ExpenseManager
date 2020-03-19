@@ -15,7 +15,7 @@ class Income(models.Model):
 
 class Expenditure(models.Model):
     category = models.CharField(max_length=100)
-    budget = models.IntegerField(blank=True,null=True)
+    budget = models.IntegerField(default=0)
 
     def __str__(self):
         return self.category
@@ -23,7 +23,7 @@ class Expenditure(models.Model):
 class Data(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE, default=1)
     sub_category = models.CharField(max_length=100)
-    sub_category_link=models.ForeignKey(Expenditure,on_delete=models.CASCADE)
+    category_link=models.ForeignKey(Expenditure,on_delete=models.CASCADE,related_name='dataset',null=True,blank=True)
     spent = models.IntegerField()
     balance = models.IntegerField(blank=True,null=True)
     recursive= models.BooleanField(max_length=100) 
@@ -34,7 +34,7 @@ class Data(models.Model):
     def __str__(self):
         return self.sub_category
     
-#    def get_absolute_url(self):
-#        return reverse("expense:post_detail",kwargs={"id": self.id})
+    def get_absolute_url(self):
+        return reverse("expense:post_detail",kwargs={"id": self.id})
     class Meta:
         ordering = ["-timestamp","-updated"]

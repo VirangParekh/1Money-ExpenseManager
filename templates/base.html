@@ -1,151 +1,26 @@
-{% load  static %}
-<!doctype html>
+{% load  staticfiles %}
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block head_title %}Expense Manager{% endblock head_title %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href='{% static "/css/stylesheet.css" %}'>
-    
-  </head>
-  <body>
-      
-    <div id="background">
-    <nav class="navbar navbar-expand-lg navbar-transparent">
-        <div class="container">
-            <a class="navbar-brand" href="#">Expense Manager</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-        
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
-                    </li>
-                </ul>
-                
-                {% if user.is_authenticated %}
-                <ul class="navbar-nav mr-left">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'expense:timeline' %}"><button type="button" class="btn btn-primary">Timeline</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'logout' %}"><button type="button" class="btn btn-success">Logout</button></a>
-                    </li>
-                </ul>
-                {% else %}
-                <ul class="navbar-nav mr-left">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}"><button type="button" class="btn btn-primary">Login</button></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'register' %}"><button type="button" class="btn btn-success">Register</button></a>
-                    </li>
-                </ul>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
+    <link rel="stylesheet" href='{% static "/css/base.css" %}' />
+    <style>
+        {% block style %}{% endblock style %}
+    </style>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v5.0"></script>
     {% include "messages_display.html" %}
     <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                    {% block content %}
-                    {% endblock content %}
-            </div>
-            <div class="col-md-4">
-                    
-                <div class="card" style="width:100%; height:auto;">
-                    <div class="card-body">
-                      <b><p class="card-text">Check Analysis</p></b>
-                      <br>
-                      <h5 class="card-title"><a href="{% url 'expense:analytics' %}" class='btn btn-success'>Proceed</a></h5>
-                    </div>
-                    </div>
-            </div>
-        </div>
+    {% block content %}
+    {% endblock content %}
     </div>
-    </div>
-    </div>
-    <!--Footer-->
-     <footer class="page-footer font-small">
-        <div class="container">
-            <div class="container-fluid text-center text-md-left">
-            <div class="row">
-                <div class="col-md-3 mt-md-0 mt-3">
-                <h5 class="text-uppercase">Get to know us</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Help</a></li>
-
-                </ul>
-                </div>
-                
-                <hr class="clearfix w-100 d-md-none pb-3">  
-                
-                <div class="col-md-3 mb-md-0 mb-3">
-                <h5 class="text-uppercase">Services</h5>
-                <ul class="list-unstyled">
-                    <li>
-                    <a href="#!">Expenditure Guidance</a>
-                    </li>
-                    <li>
-                    <a href="#!">Currency Coversions</a>
-                    </li>
-                </ul>
-                </div>
-
-                <div class="col-md-3 mb-md-0 mb-3">
-                <h5 class="text-uppercase">Quick Links</h5>
-                <ul class="list-unstyled">
-                    <li>
-                    <a href="#!">Contact Us</a>
-                    </li>
-                    <li>
-                    <a href="#!">Feedback</a>
-                    </li>
-                    <li>
-                    <a href="#!">Privacy Policy</a>
-                    </li>
-                    <li>
-                    <a href="#!">Disclaimer</a>
-                    </li>
-                </ul>
-                </div>
-
-                <div class="col-md-3 mb-md-0 mb-3">
-                    <h5 class="text-uppercase">Social</h5>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="#" class="fa fa-facebook"></a>
-                            <a href="#" class="fa fa-twitter"></a>
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-            </div>
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3" style="color:antiquewhite;">
-            © 2020 Copyright : MDBootstrap.com
-            </div>    
-        </div>
-    
-    </footer>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
 </html>

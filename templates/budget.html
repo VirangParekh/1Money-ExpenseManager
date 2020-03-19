@@ -1,12 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-</head>
+{% extends "base.html" %}
+{% block  content %}
+<h1>Budget</h1>
+<p><a href="{% url 'expense:analytics' %}" class="btn btn-danger" role="button">Analytics</a></p>
+<p><a href="{% url 'expense:timeline' %}" class="btn btn-danger" role="button">Timeline</a></p>
 
 <body>
-   <h1>BUDGET</h1>> 
+   <h1>{{ title1 }}</h1>
+   {% for obj1 in object_list1 %}
+   {{ obj1 }}<br>
+   {% endfor %} 
+   <h1>{{ title2 }}</h1>
+   {% for obj2 in object_list2 %}
+   {{ obj2 }}<br>
+   {% endfor %} 
+   
+<!--{% for key,values in cat_dict.item %}
+   {{ key }}<br>
+   {% for value in values %}
+   {{ value }}<br>
+   {% endfor %} 
+
+   {% endfor %} 
+-->
 </body>
-</html>
+{% endblock content %}

@@ -9,7 +9,7 @@ def login(request):
 
         if user is not None :
             auth.login(request,user)
-            return render(request,'timeline.html')
+            return redirect('expense:timeline')
         else:
             messages.info(request,'invalid credentials')
             return redirect('login')
@@ -32,7 +32,7 @@ def register(request):
                 user = User.objects.create_user(username=username, password=password1, email =email)
                 user.save()
                 print('user created')
-                return render(request,'timeline.html')
+                return redirect('expense:budget')
 
         else:
             messages.info(request,'password does not match')

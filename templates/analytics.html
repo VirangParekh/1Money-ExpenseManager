@@ -1,12 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-</head>
-
-<body>
-   <h1>ANALYTICS</h1>> 
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<title>Post List</title>  
+<div class="col-sm-6 col-sm-offset-3">
+<h1>Analytics</h1>
+<p><a href="{% url 'expense:budget' %}" class="btn btn-danger" role="button">Budget</a></p>
+<p><a href="{% url 'expense:timeline' %}" class="btn btn-danger" role="button">Timeline</a></p>
+<br>
+{% for obj in object_list %}
+ <div class="card" style="width: 500px">
+    <div class="card-body">
+      <h5 class="card-title"><a href='{{ obj.get_absolute_url }}'>{{ obj.sub_category }}</a><br>{{ obj.spent }}</h5>
+    </div>
+  </div>
+  <br>
+  <br>
+{% endfor %}
+</div>
+</div>
+{% endblock content %}
+    
