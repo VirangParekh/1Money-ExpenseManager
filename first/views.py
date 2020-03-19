@@ -32,6 +32,7 @@ def register(request):
                 user = User.objects.create_user(username=username, password=password1, email =email)
                 user.save()
                 print('user created')
+                auth.login(request,user)
                 return redirect('expense:budget')
 
         else:
