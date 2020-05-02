@@ -1,7 +1,7 @@
 #from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path, include
-from . import views
+from . import views 
 
 app_name = 'expense'
 
@@ -13,5 +13,6 @@ urlpatterns = [
     path('post_delete/<int:id>',views.post_delete, name="post_delete"),
     path('analytics/',views.analytics,name='analytics'),
     path('budget/',views.budget,name='budget'),
-
+    path('calendar/<str:date>/<str:month>/<str:year>',views.calendar,name='calendar'),
+    path('calendarToday/',views.calendarToday,name='calendarToday'),
 ]
