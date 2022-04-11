@@ -25,7 +25,7 @@ SECRET_KEY = "n4t5d8gl1u0yluf^^p*oyc0ptnc)d9$qk!d2583g0&cjv@wdxj"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "money-expense-manager.herokuapp.com/"]
+ALLOWED_HOSTS = ["127.0.0.1", "money-expense-manager.herokuapp.com"]
 
 
 # Application definition
